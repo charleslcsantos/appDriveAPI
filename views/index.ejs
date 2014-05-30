@@ -2,10 +2,18 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/css/style.css' />
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  	<div class="box box-login">
+  		<h3>Área Restrita</h3>
+  		<form method="post" action="/dashboard">
+  			<input type="text" name="usuario" class="form-control" placeholder="Usuário">
+  			<input type="password" name="senha" class="form-control" placeholder="Senha">
+  			<input type="submit" class="btn btn-primary btn-block" value="Logar">
+  		</form>
+  	</div>
   </body>
 </html>
