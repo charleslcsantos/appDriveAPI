@@ -8,7 +8,7 @@ var auth;
 
 var CLIENT_ID = '920164418277-6jgan36cf2aaepbdfh5dd6s7kn5kl5sl.apps.googleusercontent.com',
 	CLIENT_SECRET = 'mY0h-1_VhMUydS6tWhNVp4ws',
-	REDIRECT_URL = 'http://localhost:3000/dashboard',
+	REDIRECT_URL = 'http://localhost:3000/dashboard/autenticacao',
 	SCOPE = 'https://www.googleapis.com/auth/drive.file';
 
 /* GET users listing. */
@@ -18,12 +18,9 @@ router.post('/', function(req, res) {
 	  var url = auth.generateAuthUrl({ scope: SCOPE }); 
 	  res.redirect(url);
 	});
-
 });
 
-
 router.get('/', function(req, res) {
-	cod_token = req.query.code;
     auth.getToken(cod_token, function(err, tokens) {
 		if (err) {
 			console.log('Error while trying to retrieve access token', err);
@@ -47,7 +44,6 @@ router.get('/', function(req, res) {
 		                var fechaUpd = resp.items[i].modifiedDate;
 		                var userUpd = resp.items[i].lastModifyingUserName;
 
-		                
 		                console.log('Título: ' + titulo + ' - Ultima Modificação: ' + fechaUpd + ' - Autor: ' + userUpd );                
 		            }
 	                // console.log(fileInfo);
@@ -65,6 +61,12 @@ router.get('/', function(req, res) {
 	  console.log(" FORA DO EXECUTE  "+cod_token);
 	// res.render('dashboard', { title: 'Área Restrita - Dashboard' });
 });
+
+router.get('/autenticacao', function(req, res){
+	  cod_token = req.query.code;
+	  res.redirect('/dashboard');
+});
+
 
 router.post('/upload', function(req, res){
 
