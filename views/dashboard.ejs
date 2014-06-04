@@ -10,6 +10,13 @@
   	<div class="box">
   		<h3>Dashboard</h3>
       <a href="/dashboard/list" class="btn btn-primary">Listar</a>
+      <ul>
+      <% for(var i=0; i< resp.items.length; i++) {%>
+         <li>Arquivo: <a href="<%= resp.items[i].webContentLink %>"> <%= resp.items[i].title %></a>
+
+         </li>
+      <% } %>
+      </ul>
   	</div>
   </body>
 </html>

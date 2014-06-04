@@ -28,7 +28,6 @@ router.get('/', function(req, res) {
 		}
       	auth.credentials = tokens;
 	    googleapis.discover('drive', 'v2').execute(function(err, client) {
-			console.log("entreiiiii!");
 			var request = client.drive.files
 							.list()
 							.withAuthClient(auth);
@@ -37,7 +36,6 @@ router.get('/', function(req, res) {
 				// res.send(resp);
 				itens = resp;
 				
-	  			console.log(cod_token);
 				for (i=0; i<resp.items.length; i++) {
 					if((resp.items[i] != null) || (resp.items[i] != undefined)){
 		                var titulo = resp.items[i].title;
@@ -48,17 +46,14 @@ router.get('/', function(req, res) {
 		            }
 	                // console.log(fileInfo);
 	            }
-
-	  			console.log("DENTRO : "+cod_token);
-				res.send(resp);
+				// res.send(resp);
+				res.render('dashboard', { 
+					title: 'Área Restrita - Dashboard',
+					resp: resp
+				});
 			});
 		});
     });
-	// res.render('dashboard', { title: 'Área Restrita - Dashboard' });
-	
-
-
-	  console.log(" FORA DO EXECUTE  "+cod_token);
 	// res.render('dashboard', { title: 'Área Restrita - Dashboard' });
 });
 
